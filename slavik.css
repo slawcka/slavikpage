@@ -93,10 +93,23 @@ nav {
     border-width:2px 0 2px 0;
     border-color:white; */
 }
+.intro {
+    
+    background-image: url('img/cosmos.jpg');
+    background-repeat:no-repeat;
+    background-position:50% 50%; 
+}
+.menu {
+    background: -webkit-linear-gradient(top, rgba(102, 0, 116, 0.801)
+     1%,rgb(102, 0, 116, 0.801) 50%,
+    rgba(143,7,150,0) 100%); /* Chrome10-25,Safari5.1-6 */
+}
 .catwrap {
+    
     height:600px;
 }
 .catbg {
+    
     background-image: url('img/cat.png');
     background-repeat:no-repeat;
     background-position: 50% 40%;
