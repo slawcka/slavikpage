@@ -2,6 +2,12 @@
     box-sizing: border-box;
     margin:0;
 }
+:root {
+    --intro-height:1100px;
+    --lightgray:rgb(238, 236, 253);
+    --darkgray:rgb(143, 140, 165);
+    
+}
 a {
     text-decoration: none;
 }
@@ -35,6 +41,12 @@ a {
 .margin-s {
     margin-bottom:15px;
 }
+.margin-m {
+    margin-bottom:25px;
+}
+.marginh1 {
+    margin:25px 0;
+}
 
 .bg {
     background-color: rgb(80, 10, 74);
@@ -55,13 +67,20 @@ a {
 .white {
     color:white;
 }
+.gray {
+    color:rgb(92, 97, 122);
+}
 .purple {
     color:rgb(192, 140, 202);
 }
 .heading {
     font-family: 'Playfair Display', serif;
 }
-h1 {
+p {
+    font-family: 'Lato', sans-serif;
+    
+}
+h1,h2 {
     display:block;
 }
 .fontl {
@@ -94,10 +113,14 @@ nav {
     border-color:white; */
 }
 .intro {
+    position: relative;
+    overflow: hidden;
     
-    background-image: url('img/cosmos.jpg');
     background-repeat:no-repeat;
-    background-position:50% 50%; 
+    background-size: auto;
+    background-position:bottom center;
+    width: 100%;
+    height:var(--intro-height);
 }
 .menu {
     background: -webkit-linear-gradient(top, rgba(102, 0, 116, 0.801)
@@ -108,9 +131,83 @@ nav {
     
     height:600px;
 }
-.catbg {
-    
-    background-image: url('img/cat.png');
+
+.second {
+    background:blue;
+    height:6000px;
+}
+.fixed-layer {
+    width:100%;
+    height:var(--intro-height);
+    position: fixed;
+    top:0;
+    left:0;
+    background-size: auto;
     background-repeat:no-repeat;
-    background-position: 50% 40%;
+    z-index: -1;
+    
+}
+.layer1 {
+    background-image: url('img/cosmos.jpg');
+    background-position: 30% 0%;
+}
+.layer2 {
+    background-image: url('img/galaxy.png');
+    background-position: 50% 20%;
+}
+.layer3 {
+    background-image: url('img/catlay.png');
+    background-size:50%;
+    background-position: bottom right;
+    
+}
+.layer4 {
+    background-image: url('img/galaxy2.png');
+    background-size:50%;
+    background-position: bottom right;
+}
+.layer5 {
+    background-image: url('img/rocket.png');
+    background-size:20%;
+    background-position: bottom right;
+}
+
+.second-row {
+    min-height:500px;
+    background-color:rgb(51, 51, 51);
+}
+.gifform {
+    display: block;
+
+}
+.gifform input[type="text"] {
+    position: relative;
+    font:900 3em Lato, sans-serif; 
+    color: var(--darkgray);
+    padding:15px 25px;
+    outline:none;
+    width:600px;
+    border:4px solid var(--lightgray);
+    border-radius:50px;
+}
+.gifform input[type="text"]::placeholder {
+    color:rgb(235, 232, 232);
+}
+.gifform input[type='submit'] {
+    position:absolute;
+    transform:translate(510px,-80px);
+    border:none;
+    border-radius: 40px;
+    padding:0 10px 15px 10px;
+    font-size:2.5em;
+    
+}
+.container-gifs {
+    margin:0 auto;
+    width:auto;
+    min-height:500px;
+    background-color:rgb(37, 37, 37);
+}
+.giphys {
+    margin:5px;
 }

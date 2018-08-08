@@ -1,3 +1,8 @@
+var xmovebg;
+var ymovebg;
+var catOpacity = 1;
+var catSize = 50;
+
 function movingNav() {
     const buttons = document.querySelectorAll('.button-clear');
     const nav = document.querySelector('nav');
@@ -30,7 +35,7 @@ function movingNav() {
 }
 
 
-function movingBg(){
+function movingBg() {
     const cosmosBg = document.querySelector('.intro');
 
     function bgAnimate(e) {
@@ -44,12 +49,99 @@ function movingBg(){
         }
         const xmove = (x * 0.002) + 50;
         const ymove = (y * 0.008) + 50;
+        xmovebg = xmove;
         console.log(xmove);
-        cosmosBg.style.backgroundPosition = `${xmove}% ${ymove}%`
+        cosmosBg.style.backgroundPosition = `${xmovebg}% ${ymovebg}px`
     }
     cosmosBg.addEventListener('mousemove', bgAnimate, false);
 }
 
+window.addEventListener('scroll', function (ev) {
+    var layer, movement, topDistance, speed, catlayer;
+    catlayer = document.querySelector('.layer3');
+    topDistance = this.pageYOffset;
+    catOpacity -= 0.1;
+    catSize -= 8;
+    catlayer.style.opacity = catOpacity;
+    catlayer.style.backgroundSize = `${catSize}%`;
+    layer = document.querySelectorAll('[data-speed]');
+    layer.forEach(lay => {
+        speed = lay.getAttribute('data-speed');
+        movement = -(topDistance / speed);
+        ymovebg = movement;
+        lay.style.transform = `translateY(${movement}px)`;
+
+    })
+})
+
+function Giphy(ev) {
+    ev.preventDefault();
+    //stop form from submitting
+
+    var GiphyHost, GiphyTrending, GiphyApiKey, url,
+        imageDiv, searchValue, gifsContainer, GiphySearch, searchurl;
+
+    searchValue = document.querySelector('.searchgif').value;
+    gifsContainer = document.querySelector('.container-gifs');
+    const gifarr = [];
+
+    GiphyHost = 'http://api.giphy.com';
+    GiphyTrending = '/v1/gifs/trending?';
+    GiphySearch = '/v1/gifs/search?q=' + searchValue;
+    GiphyApiKey = '&api_key=fJiNOIqTsyA5YZZRQFss1cfh5FTLYPKQ&limit=20';
+
+    url = GiphyHost + GiphyTrending + GiphyApiKey;
+    searchurl = GiphyHost + GiphySearch + GiphyApiKey;
+    image = document.querySelector('.giphyimage');
+
+    var containerGifs = document.querySelector('.container-gifs');
+    console.log(searchurl)
+
+
+
+
+    fetch(searchurl)
+        .then(data => data.json())
+        .then(res => {
+            console.log();
+            gifarr.push(...res.data);
+            for (i = 0; i < res.data.length; i++) {
+                var imageInArray=res.data[i].images.fixed_width.url;
+                var newimg = document.createElement('img');
+                
+                newimg.classList.add('giphys');
+                newimg.setAttribute('src',imageInArray);
+                gifsContainer.appendChild(newimg);
+            }
+
+
+        })
+
+
+}
+
+const inputGif = document.querySelector('.gifform');
+inputGif.addEventListener('submit', Giphy);
+/* 
+http://api.giphy.com/v1/gifs/search?q=ryan+gosling&api_key=YOUR_API_KEY&limit=5
+https://api.giphy.com/v1/gifs/search?api_key=wOkuLOpg0lyr0TN1NMtr0qIAsJpFW7rn&q=
+node.setAttribute("src", res.data[i].images.fixed_width.url);
+        _tenGifs.appendChild(node);
+
+.then(res => gifarr.push(...res.data));
+http://api.giphy.com/v1/gifs/trending?&api_key=fJiNOIqTsyA5YZZRQFss1cfh5FTLYPKQ&limit=5
+
+document.getElementById("gif~"+i);      
+        node.setAttribute("src", res.data[i].images.fixed_width.url);
+        _tenGifs.appendChild(node);
+
+
+        const cities = [];
+fetch(endpoint)
+  .then(blob => blob.json())
+  .then(data => cities.push(...data));
+
+*/
 
 
 
@@ -59,9 +151,7 @@ function movingBg(){
 
 
 
-
-
-movingBg();
+// movingBg();
 movingNav();
 
 // const walk=400;
