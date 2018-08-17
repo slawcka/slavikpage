@@ -12,8 +12,8 @@
 
 <body>
     <div class="container">
-            <div class="row intro" >
-                    <div class="col-12 menu">
+            <div class="row menu" id='main-nav'>
+                    <div class="col-12 ">
                             <h1 class="heading fontl white flexx ">Slavuta</h1>
                             <nav class="flexx ">
                                 <a href="#" class="purple fontm button-clear">these</a>
@@ -21,6 +21,9 @@
                                 <a href="#" class="purple fontm button-clear">stars</a>
                             </nav>
                         </div>
+            </div>
+            <div class="row intro" >
+                   
                 <div class="fixed-layer layer1" data-speed="20"></div>
                 <div class="fixed-layer layer2" data-speed="3"></div>
                 <div class="fixed-layer layer3" data-speed="0.5"></div>
@@ -36,7 +39,7 @@
         </div>
         <div class="col-12 flexx">
                 <form action="" class="gifform margin-m">
-                        <input type="text" class="searchgif" placeholder="search cats and..">
+                        <input type="text" class="searchgif" onfocus="this.value=''" placeholder="search cats and..">
                         <input type="submit" value="&#x1F4A9">
                     </form>
         </div>

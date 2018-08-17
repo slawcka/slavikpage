@@ -75,12 +75,12 @@ window.addEventListener('scroll', function (ev) {
 
 function Giphy(ev) {
     ev.preventDefault();
-    //stop form from submitting
-    var GiphyHost, GiphyTrending, GiphyApiKey, url,secondRow,
-        imageDiv, searchValue, gifsContainer, GiphySearch, searchurl;
+    var GiphyHost, GiphyTrending, GiphyApiKey, url,secondRow,formInput,
+        imageDiv, searchValue, gifsContainer, GiphySearch, searchurl,gifcol;
+
     searchValue = document.querySelector('.searchgif').value;
     gifsContainer = document.querySelector('.container-gifs');
-    secondRow= document.querySelector('.second-row');
+    secondRow= document.querySelector('.container-gifs');
     GiphyHost = 'http://api.giphy.com';
     GiphyTrending = '/v1/gifs/trending?';
     GiphySearch = '/v1/gifs/search?q=' + searchValue;
@@ -89,13 +89,14 @@ function Giphy(ev) {
     url = GiphyHost + GiphyTrending + GiphyApiKey;
     searchurl = GiphyHost + GiphySearch + GiphyApiKey;
     image = document.querySelector('.giphyimage');
+    secondRow.innerHTML="";
 
     fetch(searchurl)
         .then(data => data.json())
         .then(res => {res.data.forEach(i => {gifArr.push(i.images.fixed_width_downsampled.url)})})
         
    function chunkinator(){  
-    
+    gifcol=document.querySelectorAll('.gifcol');
     var tempArray = [];
     var chunkCount = Math.ceil(gifArr.length/5);
     for(var i = 0; i < chunkCount; i++){
@@ -106,7 +107,6 @@ function Giphy(ev) {
         var newColumn= document.createElement('div');
             newColumn.classList.add('col-3','gifcol');
             secondRow.appendChild(newColumn);
-            console.log('e length '+e.length)
             e.forEach(c=>{
                 var imgSrc=c;
                 var newimg = document.createElement('img');
@@ -114,20 +114,46 @@ function Giphy(ev) {
                 newimg.setAttribute('src',imgSrc);
                 newColumn.appendChild(newimg);
             })
-    });     
-       
+    }); 
+    
+    if (tempArray.length>1){
+        tempArray=[];
+        gifArr=[];
+    }
    }
-
    setTimeout(chunkinator,800);
-
-
 }; //giphy funcio
-        var samplearr= ['askme','doit','sayit']
-        var samplearrtwo=samplearr.slice(0,2);
-        var zosia;
         
-        
-        
+
+function liveNav(){
+    const nav= document.querySelector('#main-nav');
+    const topOfNav= nav.offsetTop;
+    function fixNav() {
+        if (window.scrollY >= topOfNav){
+            document.body.classList.add('fixed-nav');
+        }
+        else {
+            document.body.classList.add('fixed-nav');
+        }
+    }
+fixNav();
+}
+
+
+const inputGif = document.querySelector('.gifform');
+window.addEventListener('scroll',liveNav);
+inputGif.addEventListener('submit', Giphy);           
+movingNav();  
+
+
+
+/* 
+
+
+*/
+
+
+
         // for(i=0;i<justImagesArr.length;i++){
         //     var newColumn= document.createElement('div');
         //     newColumn.classList.add('.col-4');
@@ -138,24 +164,6 @@ function Giphy(ev) {
     //justImagesArr[0][0].downsized.url
            
             /* gifarr.push(...res.data) */ 
-
-    var containerGifs = document.querySelector('.container-gifs');
-    
-    
-   
-    
-
-
-    
-
-/* 
-
-
-*/
-    
-            
-            
-            
             // gifArr.forEach(ez => {
             //     var newColumn= document.createElement('div');
             //     newColumn.classList.add('.col-4');
@@ -165,11 +173,6 @@ function Giphy(ev) {
             //         newColumn.appendChild(imageInArray)
             //     })
             // })
-
-const inputGif = document.querySelector('.gifform');
-inputGif.addEventListener('submit', Giphy);
-
-
 /* 
 for (i = 0; i < res.data.length; i++) {
                 var imageInArray=res.data[i].images.downsized_medium.url;
@@ -181,8 +184,6 @@ for (i = 0; i < res.data.length; i++) {
 
                 
             }
-
-
 function chunkArray(myArray, chunk_size){
     var results = [];
     
@@ -223,7 +224,7 @@ fetch(endpoint)
 */
 
 // movingBg();
-movingNav();
+
 
 // const walk=400;
 // const intro= document.querySelector('.intro');
