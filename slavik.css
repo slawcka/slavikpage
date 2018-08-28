@@ -25,7 +25,12 @@ a {
 .marginh1 {
     margin:25px 0;
 }
-
+.margincenter {
+    margin:0 auto;
+}
+.textcenter {
+    text-align: center; 
+}
 .bg {
     background-color: rgb(80, 10, 74);
 }
@@ -61,27 +66,59 @@ p {
 h1,h2 {
     display:block;
 }
+.
 .fontl {
     font-size:4.5em;
+    
+}
+.fontmx {
+    font-size:2.5em;
 }
 .fontm {
     font-size:1.5em;
 }
-.fixed-nav #main-nav {
-    position:fixed;
+.btn {
+    border:none;
+    outline:none;
 }
-.fixed-nav #main-nav .fontl {
-    font-size:2em;
+.btn:hover {
+    cursor: pointer;
 }
+.logo {
+    font-size:5.5em;
+    transition: all,0.5s;
+}
+.fixed-nav .logo {
+    font-size:2.5em;
+    
+}
+#main-nav {
+    position:fixed ;
+    z-index:10;
+    
+    
+}
+
+
 nav {
     display:block;
 }
 .button-clear {
+    font-size:1.5em;
     padding:5px;
     margin:0 10px;
     position: relative;
     z-index: 2;
+    transition:all, 0.5s
 
+}
+.fixed-nav .button-clear {
+    font-size:1.2em
+  
+
+}
+.button-clear:hover {
+    color:white;
 }
 
 .moving-link {
@@ -107,6 +144,7 @@ nav {
     height:var(--intro-height);
 }
 .menu {
+    
     background: -webkit-linear-gradient(top, rgba(102, 0, 116, 0.801)
      1%,rgb(102, 0, 116, 0.801) 50%,
     rgba(143,7,150,0) 100%); /* Chrome10-25,Safari5.1-6 */
@@ -160,29 +198,45 @@ nav {
     min-height:500px;
     background-color:rgb(51, 51, 51);
 }
+.searchform {
+    display:block;
+}
 .gifform {
     display: block;
+    text-align: center;
 
 }
 .gifform input[type="text"] {
     position: relative;
-    font:900 3em Lato, sans-serif; 
+    font:900 2em Lato, sans-serif; 
     color: var(--darkgray);
     padding:15px 25px;
     outline:none;
-    width:600px;
+    width:400px;
     border:4px solid var(--lightgray);
     border-radius:50px;
+}
+.gifform input[type="button"] {
+    font:900 2em Lato, sans-serif;
+    color: var(--darkgray);
+    padding:15px 25px;
+    border-radius:50px;
+    border:4px solid var(--lightgray);
+    outline:none;
+}
+.gifform input[type="button"]:hover {
+    background:gray;
+    cursor: pointer;
 }
 .gifform input[type="text"]::placeholder {
     color:rgb(235, 232, 232);
 }
 .gifform input[type='submit'] {
-    position:absolute;
-    transform:translate(510px,-80px);
+    position:relative;
+    transform:translate(-80px,-3px);
     border:none;
     border-radius: 40px;
-    padding:0 10px 15px 10px;
+    padding:0 8px 13px 8px;
     font-size:2.5em;
     outline:none;
     
@@ -190,6 +244,7 @@ nav {
 .gifform input[type='submit']:hover {
     background:rgb(206, 206, 206);
     cursor:pointer;
+    
 }
 
 .container-gifs {
@@ -206,4 +261,75 @@ nav {
     display: inline-block;
     width:100%;
     padding:20px 0;
+}
+/* pomodoro */
+
+.display {
+    display: block;
+    font-size:10em;
+    font-weight:900;    
+    background: linear-gradient(to bottom, rgba(42,223,247,1) 0%,rgba(150,0,232,1) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+.increments-wrap {
+    display:inline-block;
+    padding:0 20px ;
+}
+.increments-wrap input{
+    color:white;
+    font-size:2em ;
+    text-align:center;
+    display:inline-block;
+    width:70px;
+    padding:10px;
+    border-radius:20%;
+    background:none;
+    border:2px solid white;
+    outline:none;
+    
+}
+.increments {
+    color:rgb(169, 214, 231);
+    background:none;
+    border:none;    
+    width:30px;
+    height:30px;
+    outline:none;
+    border-radius:50%;
+    font:2em bold ;
+    margin-top:10px;
+    line-height: 15px;
+}
+.increments:hover {
+    background:rgba(233, 231, 228, 0.253);
+    cursor: pointer;
+}
+.increments:active {
+    color:white;
+    cursor: pointer;
+}
+.start {
+    display: inline-block;
+    color:white;
+    width:100px;
+    height:100px;
+    border:none;
+    outline:none;
+    border-radius:50%;
+    background:linear-gradient(to bottom, rgba(42,223,247,1) 0%,rgba(150,0,232,1) 100%);
+}
+.start:hover {
+    cursor: pointer;
+}
+.reset{
+    display:block;
+    width:60px;
+    height:60px;
+    background:white;
+    color:gray;
+    border-radius:50px;
+}
+.controls {
+    padding:0 50px;
 }

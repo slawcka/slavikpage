@@ -12,44 +12,79 @@
 
 <body>
     <div class="container">
-            <div class="row menu" id='main-nav'>
-                    <div class="col-12 ">
-                            <h1 class="heading fontl white flexx ">Slavuta</h1>
-                            <nav class="flexx ">
-                                <a href="#" class="purple fontm button-clear">these</a>
-                                <a href="#" class="purple fontm button-clear">nice</a>
-                                <a href="#" class="purple fontm button-clear">stars</a>
-                            </nav>
-                        </div>
+        
+        <div class="row menu" id='main-nav'>
+            <div class="col-12 ">
+                <h1 class="heading  white flexx logo">Slavuta</h1>
+                <nav class="flexx ">
+                    <a href="#" class="purple  button-clear">these</a>
+                    <a href="#" class="purple  button-clear">nice</a>
+                    <a href="#" class="purple  button-clear">stars</a>
+                </nav>
             </div>
-            <div class="row intro" >
-                   
-                <div class="fixed-layer layer1" data-speed="20"></div>
-                <div class="fixed-layer layer2" data-speed="3"></div>
-                <div class="fixed-layer layer3" data-speed="0.5"></div>
-                <div class="fixed-layer layer4" data-speed="0.8"></div>
-                <div class="fixed-layer layer5" data-speed="0.3"></div>
-           
-            </div>
+        </div>
+        <div class="row intro">
+
+            <div class="fixed-layer layer1" data-speed="20"></div>
+            <div class="fixed-layer layer2" data-speed="3"></div>
+            <div class="fixed-layer layer3" data-speed="0.5"></div>
+            <div class="fixed-layer layer4" data-speed="0.8"></div>
+            <div class="fixed-layer layer5" data-speed="0.3"></div>
+
+        </div>
     </div>
-    
+
     <div class="row second-row">
         <div class="col-12 flexx">
             <h1 class="heading white fontl  marginh1">giphy hunt</h1>
         </div>
-        <div class="col-12 flexx">
-                <form action="" class="gifform margin-m">
-                        <input type="text" class="searchgif" onfocus="this.value=''" placeholder="search cats and..">
-                        <input type="submit" value="&#x1F4A9">
-                    </form>
-        </div>
-        
+
+        <form action="" class="gifform margin-m flexx">
+            <input type="text" class="searchgif" onfocus="this.value=''" placeholder="search cats and..">
+            <input type="submit" value="&#x1F4A9">
+            <input type="button" class="trending" value="trending">
+        </form>
+
+
         <div class=" container-gifs"></div>
-        
-         
+
+
 
     </div>
-    
+    <div class="row thirdrow">
+            <div class="col-12 flexx">
+                <div class="timer-wrap textcenter">
+                    <h1 class="display"></h1>
+                    <h1 class="sessiontype white margin-s">Let's do some work bitch</h1>
+                    <div class="controls flexy ">
+                        <div class="increments-wrap ">
+                                <p class="margin-s white">work session</p>
+                                <p>
+                                    <input class='workinput' type="text" value="25">
+                                </p>
+                            <button class="increments pluswork" name="pluswork">+</button>
+                            <button class="increments minuswork" name="minuswork">-</button>
+                        </div>
+                        <button class="start fontmx">start</button>
+                        <div class="increments-wrap textcenter">
+                                <p class="margin-s white">break session</p>
+                                <p>
+                                    <input class='breakinput' type="text" value="5">
+                                </p>
+                            <button class="increments plusbreak" name="plusbreak">+</button>
+
+                            <button class="increments minusbreaks" name="minusbreak">-</button>
+                        </div>
+                    </div>
+
+
+                    <button class="reset btn margincenter">reset</button>
+                </div>
+            </div>
+
+        </div>
+
+
     <script src="slavik.js"></script>
 </body>
 

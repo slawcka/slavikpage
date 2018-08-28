@@ -77,7 +77,7 @@ function Giphy(ev) {
     ev.preventDefault();
     var GiphyHost, GiphyTrending, GiphyApiKey, url,secondRow,formInput,
         imageDiv, searchValue, gifsContainer, GiphySearch, searchurl,gifcol;
-
+    console.log(ev)
     searchValue = document.querySelector('.searchgif').value;
     gifsContainer = document.querySelector('.container-gifs');
     secondRow= document.querySelector('.container-gifs');
@@ -123,27 +123,178 @@ function Giphy(ev) {
    }
    setTimeout(chunkinator,800);
 }; //giphy funcio
+
+function gifTrending(ev){
+    ev.preventDefault();
+    var GiphyHost, GiphyTrending, GiphyApiKey, url,secondRow,formInput,
+        imageDiv, searchValue, gifsContainer, GiphySearch, searchurl,gifcol;
+    console.log(ev)
+    searchValue = document.querySelector('.searchgif').value;
+    gifsContainer = document.querySelector('.container-gifs');
+    secondRow= document.querySelector('.container-gifs');
+    GiphyHost = 'http://api.giphy.com';
+    GiphyTrending = '/v1/gifs/trending?';
+    GiphySearch = '/v1/gifs/search?q=' + searchValue;
+    GiphyApiKey = '&api_key=fJiNOIqTsyA5YZZRQFss1cfh5FTLYPKQ&limit=20';
+    var gifArr=[];
+    url = GiphyHost + GiphyTrending + GiphyApiKey;
+    searchurl = GiphyHost + GiphySearch + GiphyApiKey;
+    image = document.querySelector('.giphyimage');
+    secondRow.innerHTML="";
+
+    fetch(url)
+        .then(data => data.json())
+        .then(res => {res.data.forEach(i => {gifArr.push(i.images.fixed_width_downsampled.url)})})
         
+   function chunkinator(){  
+    gifcol=document.querySelectorAll('.gifcol');
+    var tempArray = [];
+    var chunkCount = Math.ceil(gifArr.length/5);
+    for(var i = 0; i < chunkCount; i++){
+        tempArray.push(gifArr.splice(0, 5))
+    }
+    //console.log(tempArray)
+    tempArray.forEach(e=> {
+        var newColumn= document.createElement('div');
+            newColumn.classList.add('col-3','gifcol');
+            secondRow.appendChild(newColumn);
+            e.forEach(c=>{
+                var imgSrc=c;
+                var newimg = document.createElement('img');
+                newimg.classList.add('giphys');
+                newimg.setAttribute('src',imgSrc);
+                newColumn.appendChild(newimg);
+            })
+    }); 
+    
+    if (tempArray.length>1){
+        tempArray=[];
+        gifArr=[];
+    }
+   }
+   setTimeout(chunkinator,800);
+}
 
 function liveNav(){
+    
     const nav= document.querySelector('#main-nav');
     const topOfNav= nav.offsetTop;
+    window.addEventListener('scroll',fixNav);
     function fixNav() {
-        if (window.scrollY >= topOfNav){
+        
+        if (window.scrollY >= 200){
             document.body.classList.add('fixed-nav');
+            
         }
         else {
-            document.body.classList.add('fixed-nav');
+            document.body.classList.remove('fixed-nav');
         }
     }
-fixNav();
+
 }
+
+function pomodoro(){
+    var workInput = document.querySelector('.workinput');
+        var breakInput = document.querySelector('.breakinput');
+        var startButton = document.querySelector('.start');
+        var resetButton= document.querySelector('.reset');
+        var incrementButtons = document.querySelectorAll('.increments');
+        var timerContainerDiv=document.querySelector('.timer-wrap');
+        var timerDiv = document.querySelector('.display');
+        var sessionTypeDiv=document.querySelector('.sessiontype');
+        var audio = new Audio('alarm.mp3');
+        var iswork = true;
+        let interval;
+        timerDiv.textContent = '25:00';
+
+        function timer() {
+            clearInterval(interval);
+            sessionTypeDiv.textContent='work that ass';
+            var workSeconds = workInput.value * 60;
+            var breakSeconds = breakInput.value * 60;
+            let duration;
+            iswork ? duration = workSeconds : duration = breakSeconds;
+            var now = Date.now();
+            var then = now + duration * 1000;
+            interval = setInterval(() => {
+                var remainingtime = Math.round((then - Date.now()) / 1000);
+                transformDisplay(remainingtime);
+                if (remainingtime <= 0) {
+                    clearInterval(interval);
+                    iswork = !iswork;
+                    timer();
+                    sessionTriggers();
+                }
+            }, 1000);
+        }
+        //countdown with date(), display time to html
+        function transformDisplay(seconds) {
+            var remainingMinutes = Math.floor(seconds / 60);
+            var remainingSeconds = seconds % 60;
+            const display =
+                `${remainingMinutes<10 ? '0' : ''}${remainingMinutes}:${remainingSeconds < 10 ? '0' : '' }${remainingSeconds}`;
+            document.title = display + ' time iki ' + `${iswork ? 'pirikuro' : 'paxalkos' }`;
+            timerDiv.textContent = display;
+        }
+        function resetTimer(){
+            clearInterval(interval);
+            timerDiv.textContent= workInput.value + ':00';
+            timerContainerDiv.classList.remove('work-session');
+            sessionTypeDiv.textContent="Let's do some work bitch";
+        }
+        function sessionTriggers() {
+            audio.play();
+            if (iswork) {
+                timerContainerDiv.classList.add('work-session');
+                timerContainerDiv.classList.remove('break-session');
+                sessionTypeDiv.textContent='work that ass';
+            }
+            else {
+                timerContainerDiv.classList.remove('work-session');
+                timerContainerDiv.classList.add('break-session');
+                sessionTypeDiv.textContent='rest that ass';
+            }
+        }
+        //updates plus minus input values
+        function updateVals() {
+            let exp = this.getAttribute("name");
+            switch (exp) {
+                case 'pluswork':
+                    workInput.value++
+                        break;
+                case 'minuswork':
+                    workInput.value--
+                        break;
+                case 'plusbreak':
+                    breakInput.value++
+                        break;
+                case 'minusbreak':
+                    breakInput.value--
+            }
+        }
+        //event listeners
+        startButton.addEventListener('click', timer);
+        resetButton.addEventListener('click',resetTimer);
+        workInput.addEventListener('change', (ev => {
+            workInput.value = ev.target.value;
+            timerDiv.textContent = ev.target.value + ':00'
+        }))
+        breakInput.addEventListener('change', (ev => {
+            breakInput.value = ev.target.value;
+        }))
+        incrementButtons.forEach(e => {
+            e.addEventListener('click', updateVals)
+        })
+}
+liveNav();
+pomodoro();
 
 
 const inputGif = document.querySelector('.gifform');
-window.addEventListener('scroll',liveNav);
+const buttonGif=document.querySelector('.trending');
+buttonGif.addEventListener('click',gifTrending);
 inputGif.addEventListener('submit', Giphy);           
-movingNav();  
+// movingNav();  
 
 
 
