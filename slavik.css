@@ -263,6 +263,9 @@ nav {
     padding:20px 0;
 }
 /* pomodoro */
+.thirdrow {
+    background: url('img/desk.jpg')no-repeat center/cover;
+}
 
 .display {
     display: block;

@@ -240,6 +240,7 @@ function pomodoro(){
             clearInterval(interval);
             timerDiv.textContent= workInput.value + ':00';
             timerContainerDiv.classList.remove('work-session');
+            timerContainerDiv.classList.remove('break-session');
             sessionTypeDiv.textContent="Let's do some work bitch";
         }
         function sessionTriggers() {
