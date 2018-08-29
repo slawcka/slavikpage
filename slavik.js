@@ -242,6 +242,7 @@ function pomodoro(){
             timerContainerDiv.classList.remove('work-session');
             timerContainerDiv.classList.remove('break-session');
             sessionTypeDiv.textContent="Let's do some work bitch";
+            iswork=true;
         }
         function sessionTriggers() {
             audio.play();
