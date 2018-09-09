@@ -233,7 +233,7 @@ function pomodoro(){
             var remainingSeconds = seconds % 60;
             const display =
                 `${remainingMinutes<10 ? '0' : ''}${remainingMinutes}:${remainingSeconds < 10 ? '0' : '' }${remainingSeconds}`;
-            document.title = display + ' time iki ' + `${iswork ? 'pirikuro' : 'paxalkos' }`;
+            document.title = display + ' time iki ' + `${iswork ? 'pauzė' : 'darbas' }`;
             timerDiv.textContent = display;
         }
         function resetTimer(){
@@ -241,20 +241,19 @@ function pomodoro(){
             timerDiv.textContent= workInput.value + ':00';
             timerContainerDiv.classList.remove('work-session');
             timerContainerDiv.classList.remove('break-session');
-            sessionTypeDiv.textContent="Let's do some work bitch";
-            iswork=true;
+            sessionTypeDiv.textContent="Let's do some work";
         }
         function sessionTriggers() {
             audio.play();
             if (iswork) {
                 timerContainerDiv.classList.add('work-session');
                 timerContainerDiv.classList.remove('break-session');
-                sessionTypeDiv.textContent='work that ass';
+                sessionTypeDiv.textContent='work time';
             }
             else {
                 timerContainerDiv.classList.remove('work-session');
                 timerContainerDiv.classList.add('break-session');
-                sessionTypeDiv.textContent='rest that ass';
+                sessionTypeDiv.textContent='break time';
             }
         }
         //updates plus minus input values
